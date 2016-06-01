@@ -34,10 +34,7 @@ public class MainController {
    * @param user A json object representing the user.
    * @return An http 2xx status in case of success.
    */
-  @RequestMapping(
-      value = "/user",
-      method = RequestMethod.POST,
-      consumes = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/user",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public ResponseEntity<?> addUser(@RequestBody User user) {
     user.setCreateTime(new DateTime());

@@ -38,8 +38,7 @@ public class MainController {
   @RequestMapping("/")
   @ResponseBody
   public String index() {
-    return "Try to go here: " + 
-      "<a href='/search?q=hola'>/search?q=hola</a>";
+	  return "Try to go here: <a href='/search?q=hola'>/search?q=hola</a>";
   }
 
 
@@ -52,7 +51,7 @@ public class MainController {
   public String search(String q, Model model) {
     List<User> searchResults = null;
     try {
-      searchResults = userSearch.search(q);
+    	searchResults = userSearch.search(q);
     }
     catch (Exception ex) {
       // here you should handle unexpected errors

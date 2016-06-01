@@ -45,26 +45,16 @@ public class UserSearch {
   public List<User> search(String text) {
     
     // get the full text entity manager
-    FullTextEntityManager fullTextEntityManager =
-      org.hibernate.search.jpa.Search.
-      getFullTextEntityManager(entityManager);
+    FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
     
     // create the query using Hibernate Search query DSL
-    QueryBuilder queryBuilder = 
-      fullTextEntityManager.getSearchFactory()
-      .buildQueryBuilder().forEntity(User.class).get();
+    QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(User.class).get();
     
     // a very basic query by keywords
-    org.apache.lucene.search.Query query =
-      queryBuilder
-        .keyword()
-        .onFields("name", "city", "email")
-        .matching(text)
-        .createQuery();
+    org.apache.lucene.search.Query query =  queryBuilder.keyword().onFields("name", "city", "email").matching(text).createQuery();
 
     // wrap Lucene query in an Hibernate Query object
-    org.hibernate.search.jpa.FullTextQuery jpaQuery =
-      fullTextEntityManager.createFullTextQuery(query, User.class);
+    org.hibernate.search.jpa.FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(query, User.class);
   
     // execute search and return results (sorted by relevance as default)
     @SuppressWarnings("unchecked")

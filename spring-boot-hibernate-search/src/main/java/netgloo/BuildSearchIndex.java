@@ -18,8 +18,7 @@ import org.springframework.stereotype.Component;
  * @author netgloo
  */
 @Component
-public class BuildSearchIndex
-implements ApplicationListener<ApplicationReadyEvent> {
+public class BuildSearchIndex implements ApplicationListener<ApplicationReadyEvent> {
   
   // ------------------------
   // PRIVATE FIELDS
@@ -40,17 +39,14 @@ implements ApplicationListener<ApplicationReadyEvent> {
    */
   @Override
   public void onApplicationEvent(final ApplicationReadyEvent event) {
-    try {
-      FullTextEntityManager fullTextEntityManager =
-        Search.getFullTextEntityManager(entityManager);
-      fullTextEntityManager.createIndexer().startAndWait();
-    }
-    catch (InterruptedException e) {
-      System.out.println(
-        "An error occurred trying to build the serach index: " +
-         e.toString());
-    }
-    return;
+	  try {
+		  FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+		  fullTextEntityManager.createIndexer().startAndWait();
+	  }
+	  catch (InterruptedException e) {
+		  System.out.println("An error occurred trying to build the serach index: " +e.toString());
+	  }
+	  return;
   }
 
 

@@ -16,8 +16,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    * and password.
    */
   @Autowired
-  public void configureGlobal(AuthenticationManagerBuilder auth)
-  throws Exception {
+  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     auth
       // Defines three users with their passwords and roles
       .inMemoryAuthentication()
